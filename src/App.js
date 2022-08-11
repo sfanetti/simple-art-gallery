@@ -11,7 +11,6 @@ function App() {
   const [scanningData, setIsScanning] = useState({ isScanning: false, direction: 0 });
   
   useEffect(() => {
-      document.title='Welcome to Artworld'
       setIsLoading(true);
       localStorage.setItem('image-id', imageId);
       try {
@@ -25,12 +24,11 @@ function App() {
           setData(processed);
           const { isScanning, direction } = scanningData;
           const nextImageId = imageId + direction;
-
           if (isScanning && nextImageId >= LOWER_LIMIT && nextImageId < UPPER_LIMIT) {
             if (uncached) {
               setIsScanning({ isScanning: false});
             } else {
-              setImageId(imageId + direction);
+              setImageId(nextImageId);
             }
           }
         });
