@@ -20,7 +20,7 @@ body {
 .App {
   text-align: center;
   padding: 0 20px;
-  overflow: hidden;
+  overflow-y: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -30,6 +30,7 @@ body {
   flex: 0 0 auto;
   margin: 0;
   padding: 20px;
+  white-space: nowrap;
 }
 
 .gallery-area {
@@ -46,8 +47,8 @@ body {
 .gallery-container {
   border: 2px solid var(--border-color);
   background-color: var(--gallery-background-color);
-  transition: height ease-in-out 1s;
-  height: calc(100vh - 300px);
+  transition: height ease-in-out 200ms;
+  height: calc(100vh - 320px);
   margin-bottom: 10px;
   padding: 10px;
   display: flex;
@@ -57,10 +58,10 @@ body {
 
 img {
   transition: opacity ease-in-out 300ms;
-  height: 100%;
   max-height: 100%;
   max-width: 100%;
   width: max-content;
+  background-size: cover;
 }
 
 .is-loading img {

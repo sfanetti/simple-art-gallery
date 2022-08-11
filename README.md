@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Simple Image Viewer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Substitution Activity for [Build an Art Gallery](https://digitalskills.instructure.com/courses/6034/pages/activity-rr-3-build-an-art-gallery?module_item_id=787265).  
+
+This was created so students have an easy jumping in point where they can tweak an existing implementation in the process of building their own.
 
 ## Available Scripts
 

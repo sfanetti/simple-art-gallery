@@ -6,13 +6,14 @@ import { LOWER_LIMIT, UPPER_LIMIT } from './constants/limits';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [imageId, setImageId] = useState(LOWER_LIMIT);
+  const [imageId, setImageId] = useState(localStorage.getItem('image-id') || LOWER_LIMIT);
   const [data, setData] = useState({});
   const [scanningData, setIsScanning] = useState({ isScanning: false, direction: 0 });
   
   useEffect(() => {
       document.title='Welcome to Artworld'
       setIsLoading(true);
+      localStorage.setItem('image-id', imageId);
       try {
         fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${imageId}`)
         .then(response =>response.json())
