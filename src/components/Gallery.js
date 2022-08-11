@@ -58,10 +58,15 @@ export default function Gallery({ data, isLoading, onImageLoad }) {
         document.onmousemove = null;
         isDragging=false;
     }
+    function onScroll(e) {
+        const { deltaY } = e;
+        const { scale } = transformData;
+        onScaleChange( scale * (deltaY > 0 ? 1.05 : .95));
+    }
 
     document.onmouseup = onStopDrag;
 
-    return <div className='gallery-area' onMouseUp={onStopDrag}>
+    return <div className='gallery-area' onMouseUp={onStopDrag} onWheel={onScroll}>
                 <div className='gallery-container'>
                     <img onMouseDown={onStartDrag} onMouseUp={onStopDrag}
                         style={{ 
