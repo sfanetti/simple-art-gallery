@@ -1,5 +1,7 @@
 # Simple Image Viewer
 
+![Simple Image Viewer](https://github.com/sfanetti/simple-art-gallery/blob/master/public/simple-image-viewer.PNG?raw=true "Simple Image Viewer")
+
 Substitution Activity for [Build an Art Gallery](https://digitalskills.instructure.com/courses/6034/pages/activity-rr-3-build-an-art-gallery?module_item_id=787265).  
 
 This was created so students have an easy jumping in point where they can tweak an existing implementation in the process of building their own.
