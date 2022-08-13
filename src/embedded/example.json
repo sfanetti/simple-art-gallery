@@ -1,0 +1,93 @@
+{
+    "objectID": 37084,
+    "isHighlight": false,
+    "accessionNumber": "JP633",
+    "accessionYear": "1918",
+    "isPublicDomain": true,
+    "primaryImage": "https://images.metmuseum.org/CRDImages/as/original/DP123594.jpg",
+    "primaryImageSmall": "https://images.metmuseum.org/CRDImages/as/web-large/DP123594.jpg",
+    "additionalImages": [],
+    "constituents": [
+        {
+            "constituentID": 164764,
+            "role": "Artist",
+            "name": "Utagawa Hiroshige",
+            "constituentULAN_URL": "http://vocab.getty.edu/page/ulan/500019641",
+            "constituentWikidata_URL": "https://www.wikidata.org/wiki/Q200798",
+            "gender": ""
+        }
+    ],
+    "department": "Asian Art",
+    "objectName": "Print",
+    "title": "Takanawa Tsuki no Kei",
+    "culture": "Japan",
+    "period": "Edo period (1615–1868)",
+    "dynasty": "",
+    "reign": "",
+    "portfolio": "",
+    "artistRole": "Artist",
+    "artistPrefix": "",
+    "artistDisplayName": "Utagawa Hiroshige",
+    "artistDisplayBio": "Japanese, Tokyo (Edo) 1797–1858 Tokyo (Edo)",
+    "artistSuffix": "",
+    "artistAlphaSort": "Utagawa, Hiroshige",
+    "artistNationality": "Japanese",
+    "artistBeginDate": "1797",
+    "artistEndDate": "1858",
+    "artistGender": "",
+    "artistWikidata_URL": "https://www.wikidata.org/wiki/Q200798",
+    "artistULAN_URL": "http://vocab.getty.edu/page/ulan/500019641",
+    "objectDate": "7th month tiger year 1854",
+    "objectBeginDate": 1854,
+    "objectEndDate": 1854,
+    "medium": "Woodblock print; ink and color on paper",
+    "dimensions": "9 3/5 x 14 3/8 in. (24.4 x 36.5 cm)",
+    "measurements": [
+        {
+            "elementName": "Overall",
+            "elementDescription": null,
+            "elementMeasurements": {
+                "Height": 24.4,
+                "Width": 36.5
+            }
+        }
+    ],
+    "creditLine": "Purchase, Joseph Pulitzer Bequest, 1918",
+    "geographyType": "",
+    "city": "",
+    "state": "",
+    "county": "",
+    "country": "",
+    "region": "",
+    "subregion": "",
+    "locale": "",
+    "locus": "",
+    "excavation": "",
+    "river": "",
+    "classification": "Prints",
+    "rightsAndReproduction": "",
+    "linkResource": "",
+    "metadataDate": "2020-09-16T18:35:19.457Z",
+    "repository": "Metropolitan Museum of Art, New York, NY",
+    "objectURL": "https://www.metmuseum.org/art/collection/search/37084",
+    "tags": [
+        {
+            "term": "Moon",
+            "AAT_URL": "http://vocab.getty.edu/page/aat/300386951",
+            "Wikidata_URL": "https://www.wikidata.org/wiki/Q405"
+        },
+        {
+            "term": "Night",
+            "AAT_URL": "http://vocab.getty.edu/page/aat/300133095",
+            "Wikidata_URL": "https://www.wikidata.org/wiki/Q575"
+        },
+        {
+            "term": "Boats",
+            "AAT_URL": "http://vocab.getty.edu/page/aat/300178749",
+            "Wikidata_URL": "https://www.wikidata.org/wiki/Q35872"
+        }
+    ],
+    "objectWikidata_URL": "",
+    "isTimelineWork": false,
+    "GalleryNumber": ""
+}

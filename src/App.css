@@ -41,6 +41,22 @@ body {
   gap: 10px;
 }
 
+.is-grab {
+  cursor: grab;
+}
+
+.is-grabbing {
+  cursor: grabbing;
+}
+
+.is-zoom-in {
+  cursor: zoom-in;
+}
+
+.is-zoom-out {
+  cursor: zoom-out
+}
+
 .image-data {
   flex: 0 0 auto;
 }

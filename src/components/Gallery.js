@@ -3,6 +3,12 @@ import failed from '../embedded/failed.svg';
 import ImageZoom from './ImageZoom';
 
 const DEFAULT = { scale: 1, x: 0, y: 0 };
+const CURSORS = { 
+    grabbing: 'is-grabbing',
+    grab: 'is-grab',
+    zoomIn: 'is-zoom-in',
+    zoomOut: 'is-zoom-out',
+};
 
 const getDefinitionList = (term, definition) => {
     return definition ? (<>
@@ -15,9 +21,12 @@ let lastData;
 export default function Gallery({ data, isLoading, onImageLoad }) {
     let offsetX, offsetY, isDragging;
     let [transformData, setTransform] = useState(DEFAULT);
+    let [cursorType, setCursorType] = useState(CURSORS.grab);
+    let scrollTimer;
     const { primaryImage, title, artistDisplayName, objectDate } = data;
     const hasMetadata = title || artistDisplayName || objectDate;
     const hasPrimaryImage = !!primaryImage;
+
     if (lastData !== data) {
         lastData = data;
         setTimeout(onReset, 5);
@@ -27,53 +36,72 @@ export default function Gallery({ data, isLoading, onImageLoad }) {
     }
 
     function onScaleChange(scale) {
-        const newData = Object.assign({...transformData}, {scale})
-        setTransform(newData);
+        setTransform({...transformData, scale});
     }
 
     function onReset() {
         setTransform({...DEFAULT}); 
         onStopDrag();
     }
+
     function onStartDrag(e) {
         if(e.preventDefault) e.preventDefault();
         isDragging = true;
         const { x, y, scale } = transformData;
-        offsetX = e.clientX - (scale * x);
-        offsetY = e.clientY - (scale * y);
+        const { clientX, clientY } = e;
+        offsetX = clientX - (scale * x);
+        offsetY = clientY - (scale * y);
         document.onmousemove = onDraggingImage;
+        setCursorType(CURSORS.grabbing);
         return false;
-
     }
     function onDraggingImage(e) {
         if (!isDragging) {return};
         const { clientX, clientY } = e;
         const { scale } = transformData;
-        const newX = (clientX - offsetX)/scale;
-        const newY = (clientY - offsetY)/scale;
-        setTransform(Object.assign({...transformData}, { x: `${newX}`, y: `${newY}` }));
+        const x = (clientX - offsetX)/scale;
+        const y = (clientY - offsetY)/scale;
+        setTransform({...transformData, x, y});
         return false;
     }
     function onStopDrag() {
         document.onmousemove = null;
+        setCursorType(CURSORS.grab);
         isDragging=false;
     }
     function onScroll(e) {
         const { deltaY } = e;
         const { scale } = transformData;
-        onScaleChange( scale * (deltaY > 0 ? 1.05 : .95));
+        
+        let cursor, factor;
+        if (deltaY > 0) {
+            factor = 1.05;
+            cursor = CURSORS.zoomIn;
+        } else {
+            factor = 0.95;
+            cursor = CURSORS.zoomOut;
+        }
+        setCursorType(cursor);
+        onScaleChange(scale * factor);
+
+        if (scrollTimer) {
+            clearTimeout(scrollTimer);
+        }
+
+        scrollTimer = setTimeout(() => {
+            setCursorType(CURSORS.grab);
+        }, 1000);
     }
-
     document.onmouseup = onStopDrag;
-
     return <div className='gallery-area' onMouseUp={onStopDrag} onWheel={onScroll}>
-                <div className='gallery-container'>
-                    <img onMouseDown={onStartDrag} onMouseUp={onStopDrag}
-                        style={{ 
+                <div className={`gallery-container ${cursorType}`}>
+                    <img style={{ 
                             transform:`scale(${ transformData.scale}) translate(${transformData.x}px, ${transformData.y}px)`,
                             transition: `opacity ease-in-out 300ms`
                         }}
                         className={`drag-me ${!hasPrimaryImage ? 'failed' : ''}`}
+                        onMouseDown={onStartDrag}
+                        onMouseUp={onStopDrag}
                         onLoad={onImageLoad}
                         onError={onImageLoad}
                         crossOrigin='anonymous'
@@ -81,7 +109,7 @@ export default function Gallery({ data, isLoading, onImageLoad }) {
                         alt={title} 
                         src={hasPrimaryImage ? primaryImage : failed}/>
                         <ImageZoom 
-                            scale={ transformData.scale } 
+                            scale={transformData.scale} 
                             reset={onReset}
                             scaleTo={onScaleChange}/>
                 </div>
