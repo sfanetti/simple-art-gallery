@@ -62,13 +62,14 @@ export default function Gallery({ data, isLoading, onImageLoad }) {
         const x = (clientX - offsetX)/scale;
         const y = (clientY - offsetY)/scale;
         setTransform({...transformData, x, y});
+        setCursorType(CURSORS.grabbing);
         return false;
     }
     function onStopDrag() {
-        document.onmousemove = null;
-        setCursorType(CURSORS.grab);
+            document.onmousemove = null;
+            setCursorType(CURSORS.grab);
         isDragging=false;
-    }
+        }
     function onScroll(e) {
         const { deltaY } = e;
         const { scale } = transformData;

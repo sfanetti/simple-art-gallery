@@ -13,28 +13,26 @@ function App() {
   useEffect(() => {
       setIsLoading(true);
       localStorage.setItem('image-id', imageId);
-      try {
-        fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${imageId}`)
-        .then(response =>response.json())
-        .then(json => {
-          const {title, primaryImage: uncached } = json;
-          document.title = title;
-          const primaryImage = !uncached ? null :  `${uncached}?t=${Date.now()}`
-          const processed = Object.assign(json, {primaryImage});
-          setData(processed);
-          const { isScanning, direction } = scanningData;
-          const nextImageId = imageId + direction;
-          if (isScanning && nextImageId >= LOWER_LIMIT && nextImageId < UPPER_LIMIT) {
-            if (uncached) {
-              setIsScanning({ isScanning: false});
-            } else {
-              setImageId(nextImageId);
-            }
+      fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${imageId}`)
+      .then(response =>response.json())
+      .then(json => {
+        const {title, primaryImage: uncached } = json;
+        document.title = title;
+        const primaryImage = !uncached ? null :  `${uncached}?t=${Date.now()}`
+        const processed = Object.assign(json, {primaryImage});
+        setData(processed);
+        const { isScanning, direction } = scanningData;
+        const nextImageId = imageId + direction;
+        if (isScanning && nextImageId >= LOWER_LIMIT && nextImageId < UPPER_LIMIT) {
+          if (uncached) {
+            setIsScanning({ isScanning: false});
+          } else {
+            setImageId(nextImageId);
           }
-        });
-      } catch(e) {
-        setIsLoading(false);
-      }
+        }
+      }).catch(()=> {
+        setData({});
+      });
 
   }, [imageId, scanningData])
 
@@ -50,7 +48,7 @@ function App() {
   return (
     <div className={`App ${isLoading ? 'is-loading' : ''}`}>
       <h2 className='title-area'>{isLoading ? 'Loading...' : (data.title || 'No data')}</h2>
-      <Gallery data={data} onImageLoad={() => {setIsLoading(false)}} />
+      <Gallery data={data} onImageLoad={() => setIsLoading(false)} />
       <ButtonBar 
         imageId={imageId} 
         isLoading={isLoading} 
