@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+import artDataReducer from './features/dataSlice';
 
 const store = configureStore({
-    // implement reducers and middleware
+    reducer: artDataReducer
 });
 
 export default store;
